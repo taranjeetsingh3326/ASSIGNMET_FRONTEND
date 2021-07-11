@@ -120,7 +120,7 @@ const AddPerson = (props) => {
                             </Grid>
                             <Grid item xs={12}>
                                 <Button color="primary" variant="contained" type="submit" disabled={isSubmitting}>
-                                    Create
+                                {id && id > 0 ? "Update" : 'Create'}
                                 </Button>
                             </Grid>
                         </Grid>

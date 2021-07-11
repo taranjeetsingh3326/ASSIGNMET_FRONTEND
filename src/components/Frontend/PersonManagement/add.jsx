@@ -34,7 +34,7 @@ const Add = (props) => {
                         <Typography gutterBottom variant="h5" component="h2"  >
                             {id && id > 0 ? 'Edit' : 'Add'} Person
                         </Typography>
-                        <AddPerson {...props} />
+                        <AddPerson {...props} id={id} />
                     </CardContent>
                 </Card>
             </Grid>
