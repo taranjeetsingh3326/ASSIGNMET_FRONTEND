@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import CardView from '../../common/CardView';
 import AddCard from '../../common/AddCard';
 import Button from '@material-ui/core/Button';
+import {useActions} from "../../../redux/actions";
+import * as PersonActions from "../../../redux/actions/person";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        margin : 100
+        padding : 100
     },
     addBtnRoot : {
         margin : '0 15px'
@@ -17,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 const List = (props) => {
     const classes = useStyles();
+    const personActions = useActions(PersonActions);
 
     const personList = [
         {
@@ -34,6 +37,15 @@ const List = (props) => {
             dob : new Date()
         }
     ];
+
+    useEffect(()=> {
+        getPersonsListData();
+    });
+
+    const getPersonsListData = async () => {
+        let response = await personActions.getList();
+        console.log("**response**", response);
+    }
 
     const getPersonsList = (persons = []) => {
         if(persons.length === 0){

@@ -10,8 +10,8 @@ const Routes = (props) => {
             <Router>
                 <Switch>
                     <FrotendRoute {...props} > 
-                        <Route exact path={["/", "/person"]} component={lazy(() => import("./components/Frontend/PersonManagement/list"))}/>
-                        <Route exact path="/person/add" component={lazy(() => import("./components/Frontend/PersonManagement/add"))}/>
+                        <Route exact path={["/", "/persons"]} component={lazy(() => import("./components/Frontend/PersonManagement/list"))}/>
+                        <Route exact path={["/person/add", "/person/edit/:id"]} component={lazy(() => import("./components/Frontend/PersonManagement/add"))}/>
                     </FrotendRoute>
                 </Switch>
             </Router>
