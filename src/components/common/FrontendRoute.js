@@ -1,6 +1,6 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
-import FrontendLayout from "../Layout/FrontendLayout";
+import FrontendLayout from "../../Layout/FrontendLayout"; 
 
 const isUserAuthenticated = (isPrivate) => {
     if (isPrivate) {

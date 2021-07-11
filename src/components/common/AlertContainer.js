@@ -9,8 +9,8 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
 import { green } from '@material-ui/core/colors';
 import { useSelector } from "react-redux";
-import { useActions } from "../redux/actions";
-import * as Actions from "../redux/actions/auth";
+import { useActions } from "../../redux/actions";
+import * as Actions from "../../redux/actions/auth";
 
 const variantIcon = {
   success: CheckCircleIcon,

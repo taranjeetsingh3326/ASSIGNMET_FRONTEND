@@ -21,12 +21,12 @@ const Header = ( props ) => {
     return (
         <React.Fragment>
             <AppBar position="absolute" color="default" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            CRUD Operations
-          </Typography>
-        </Toolbar>
-      </AppBar>
+              <Toolbar>
+                <Typography variant="h6" color="inherit" noWrap>
+                  Person Management
+                </Typography>
+              </Toolbar>
+            </AppBar>
         </React.Fragment>
     );
 }

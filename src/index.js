@@ -4,7 +4,7 @@ import Routes from './Routes';
 import { Provider } from "react-redux";
 import configureStore from "./redux/configureStore";
 import { PersistGate } from 'redux-persist/integration/react';
-import AlertContainer from "./components/AlertContainer";
+import AlertContainer from "./components/common/AlertContainer";
 
 const { persistor, store } = configureStore();
 
