@@ -95,7 +95,7 @@ const AddPerson = (props) => {
                                     name="dob" 
                                     label="DOB" 
                                     variant="outlined" 
-                                    value={values.mobileNo}
+                                    value={values.dob}
                                     type="date"
                                     InputLabelProps={{
                                         shrink : true
