@@ -20,31 +20,17 @@ const useStyles = makeStyles((theme) => ({
 const List = (props) => {
     const classes = useStyles();
     const personActions = useActions(PersonActions);
-
-    const personList = [
-        {
-            id : 1,
-            avatar : "https://lh3.googleusercontent.com/ogw/ADea4I4qCfFMcsmrK3NJ6ySOuPIo7haXs0jJC7185zzNSA=s32-c-mo",
-            name : "Taranjeet Singh",
-            email : "hireme@taranjeetsingh.co",
-            dob : new Date('1992-02-03')
-        },
-        {
-            id : 2,
-            avatar : "",
-            name : "Manpreet Singh",
-            email : "mailmani@gmail.com",
-            dob : new Date()
-        }
-    ];
+    const [personList, setPersonList] = React.useState([]);
 
     useEffect(()=> {
         getPersonsListData();
-    });
+    }, []);
 
     const getPersonsListData = async () => {
         let response = await personActions.getList();
-        console.log("**response**", response);
+        if(response && response.data && response.data.data){
+            setPersonList(response.data.data); 
+        }
     }
 
     const getPersonsList = (persons = []) => {
@@ -54,7 +40,7 @@ const List = (props) => {
 
         return persons.map( (person, index) => (
             <Grid key={index} item xs={12} md={3}>
-                <CardView {...props} id={person.id} avatar={person.avatar || ""} name={person.name} email={person.email} dob={person.dob + ""} />
+                <CardView {...props} id={person.id} avatar={person.avatar || ""} name={person.username} email={person.email} dob={person.dob + ""} />
             </Grid>
         ));
     }

@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 CardView.propTypes = {
-  id : PropTypes.number.isRequired,
+  id : PropTypes.string.isRequired,
   avatar : PropTypes.string.isRequired,
   name : PropTypes.string.isRequired,
   email : PropTypes.string.isRequired,

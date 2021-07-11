@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { TextField, Grid, Button} from '@material-ui/core';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -9,15 +9,31 @@ import * as PersonActions from "../../../redux/actions/person";
 const AddPerson = (props) => {
     const {id} = props;
     const personActions = useActions(PersonActions);
+    const [person, setPerson] = React.useState();
+
+    useEffect(()=> {
+        if(id){
+            getPersonDetail();
+        }
+    }, []);
+
+    const getPersonDetail = async () => {
+        let response = await personActions.getPersonDetail(id);
+        if(response && response.data && response.data.data){
+            setPerson(response.data.data); 
+        }
+    }
+
 
     return(
         <Formik
+                enableReinitialize={true}
                 initialValues={{
-                    username: '',
-                    email: '',
-                    dob: '',
-                    mobileNo: '',
-                    country: ''
+                    username: person && person.username || '',
+                    email: person && person.email || '',
+                    dob: person && person.dob || '',
+                    mobileNo: person && person.mobileNo || '',
+                    country: person && person.country || '',
                 }}
                 validationSchema={Yup.object().shape({
                     username: Yup.string()
@@ -30,8 +46,7 @@ const AddPerson = (props) => {
                 onSubmit={async (values, { setSubmitting }) => {
                     let payload = values;
                     if(id){
-                        payload = {id, ...values};
-                        await personActions.update(payload);
+                        await personActions.update(id, payload);
                     }else{
                         await personActions.add(payload);
                     }
@@ -41,7 +56,7 @@ const AddPerson = (props) => {
                         setSubmitting(false);
                       }, 400);
                 }}
-                render={({ values, errors, touched, isSubmitting, handleChange, handleBlur, handleSubmit }) => (
+                render={({ values, errors, touched, isSubmitting, setFieldValue, handleChange, handleBlur, handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
                         <Grid container >
                             <Grid item xs={12}>
@@ -113,14 +128,14 @@ const AddPerson = (props) => {
                                     <CountryDropdown
                                         style={{padding: "15px 5px", maxWidth:'60%', borderRadius:5}}
                                         value={values.country}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur} 
+                                        onChange={(val)=>setFieldValue('country', val)}
+                                        onBlur={(val)=>setFieldValue('country', val)}
                                     />
                                 </div>
                             </Grid>
                             <Grid item xs={12}>
                                 <Button color="primary" variant="contained" type="submit" disabled={isSubmitting}>
-                                {id && id > 0 ? "Update" : 'Create'}
+                                {id ? "Update" : 'Create'}
                                 </Button>
                             </Grid>
                         </Grid>

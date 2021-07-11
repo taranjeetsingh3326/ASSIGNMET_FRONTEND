@@ -32,7 +32,7 @@ const Add = (props) => {
                 <Card >
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2"  >
-                            {id && id > 0 ? 'Edit' : 'Add'} Person
+                            {id ? 'Edit' : 'Add'} Person
                         </Typography>
                         <AddPerson {...props} id={id} />
                     </CardContent>

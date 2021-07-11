@@ -5,7 +5,6 @@ const prefix = 'person';
 
 export const getList = () => async (dispatch)  => {
     try {
-        console.log("**getList**");
         return await axios.get(`${prefix}`, {});
     } catch(err) {
         dispatch({
@@ -48,9 +47,9 @@ export const add = (payload) => async (dispatch)  => {
     }
 };
 
-export const update = (payload) => async (dispatch)  => {
+export const update = (id, payload) => async (dispatch)  => {
     try {
-        let resp = await axios.put(`${prefix}`, payload, {});
+        let resp = await axios.put(`${prefix}/${id}`, payload, {});
         dispatch({
             type: ActionType.ALERT,
             payload: {
