@@ -1,0 +1,1 @@
+export const API_URL = "http://3.7.450.1:8080/api/v1";
